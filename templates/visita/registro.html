@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Visita - Municipalidad de Ventanilla</title>
+    <link rel="stylesheet" href="{% static 'css/eha/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>MUNICIPALIDAD DE VENTANILLA</h1>
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <input class="input-150" type="text" id="documento" name="documento" placeholder="Documento">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="visitante" name="visitante" placeholder="Visitante">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="entidad" name="entidad" placeholder="Entidad">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="motivo" name="motivo" placeholder="Motivo">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="funcionario" name="funcionario" placeholder="Funcionario">
+                </div>
+                <div class="form-group">
+                    <input class="input-150" type="text" id="documento_func" name="documento_func" placeholder="Documento">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="area" name="area" placeholder="Área">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="sucursal" name="sucursal" placeholder="Sucursal">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="fecha" name="fecha" placeholder="Fecha">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hora_ing" name="hora_ing" placeholder="Hora Ing.">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hora_salida" name="hora_salida" placeholder="Hora Salida">
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="button" class="btn-nuevo" id="btn-nuevo">Nuevo</button>
+                <button type="submit" class="btn-grabar">Grabar</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnNuevo = document.getElementById('btn-nuevo');
+        const form = document.querySelector('form'); // Asumiendo que solo hay un formulario en la página
+        
+        btnNuevo.addEventListener('click', function() {
+            form.reset();
+        });
+    });
+    </script>
+</html>

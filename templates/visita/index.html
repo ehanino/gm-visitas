@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Visitas Responsive</title>
+    <link rel="stylesheet" href="{% static 'css/eha/style.css' %}">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr style="font-size: 14px;">
+                <th>Visitante</th>
+                <th>Documento</th>
+                <th>Entidad</th>
+                <th>Motivo</th>
+                <th>Funcionario</th>
+                <th>Documento</th>
+                <th>Area</th>
+                <th>Sucursal</th>
+                <th>Fecha</th>
+                <th>Hora Ing.</th>
+                <th>Hora Sal.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in object_list %}
+            <tr style="font-size: 12px;">
+                <td data-label="Visitante">{{o.visitante}}</td>
+                <td data-label="Documento">{{o.visitante_doc}}</td>
+                <td data-label="Entidad">{{o.entidad}}</td>
+                <td data-label="Motivo">{{o.motivo}}</td>
+                <td data-label="Funcionario">{{o.funcionario}}</td>
+                <td data-label="Documento">{{o.funcionario_doc}}</td>
+                <td data-label="Area">{{o.area}}</td>
+                <td data-label="Sucursal">{{o.sucursal}}</td>
+                <td data-label="Fecha">{{o.fecha}}</td>
+                <td data-label="Hora Ing.">{{o.hora_ing}}</td>
+                <td data-label="Hora Sal.">{{o.hora_salida}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
