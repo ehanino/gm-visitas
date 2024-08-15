@@ -5,42 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabla de Visitas Responsive</title>
+    <link rel="stylesheet" href="{% static 'css/eha/eha_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/eha/style.css' %}">
 </head>
 <body>
-    <table>
-        <thead>
-            <tr style="font-size: 14px;">
-                <th>Visitante</th>
-                <th>Documento</th>
-                <th>Entidad</th>
-                <th>Motivo</th>
-                <th>Funcionario</th>
-                <th>Documento</th>
-                <th>Area</th>
-                <th>Sucursal</th>
-                <th>Fecha</th>
-                <th>Hora Ing.</th>
-                <th>Hora Sal.</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for o in object_list %}
-            <tr style="font-size: 12px;">
-                <td data-label="Visitante">{{o.visitante}}</td>
-                <td data-label="Documento">{{o.visitante_doc}}</td>
-                <td data-label="Entidad">{{o.entidad}}</td>
-                <td data-label="Motivo">{{o.motivo}}</td>
-                <td data-label="Funcionario">{{o.funcionario}}</td>
-                <td data-label="Documento">{{o.funcionario_doc}}</td>
-                <td data-label="Area">{{o.area}}</td>
-                <td data-label="Sucursal">{{o.sucursal}}</td>
-                <td data-label="Fecha">{{o.fecha}}</td>
-                <td data-label="Hora Ing.">{{o.hora_ing}}</td>
-                <td data-label="Hora Sal.">{{o.hora_salida}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="" style="height: 99vh;">
+        <header class="sombra">
+            <div style="width: 10rem;">
+                <img src="{% static 'img/logo-ventanilla.png' %}" alt="Logo Municipalidad Ventanilla" class="logo">
+            </div>
+            <div class="title-container">
+                <h1 class="main-title">MUNICIPALIDAD DISTRITAL DE VENTANILLA</h1>
+            </div>
+            <div class="user-container" style="width: 150px;">
+                <div class="user-image">
+                    <img src="{% static 'img/hsolis.png' %}" alt="Usuario">
+                </div>
+                <div class="user-info">
+                    <p class="user-name">Hellen Solis</p>
+                    <p class="user-username">hsolis</p>
+                </div>
+            </div>
+        </header>
+        <div>
+        <div class="search-container" style="margin-top: 20px;">
+            <fieldset class="form__div" style="max-width: 250px;">
+                <legend>Buscar</legend>
+                <input type="text" name="text-search" class="form__input" placeholder=" " id="id-text-search">
+                <label for="id-text-search" class="form__label">Texto a buscar</label>
+            </fieldset>
+            <fieldset class="form__div" style="max-width: 150px;">
+                <legend>Fecha Inicial</legend>
+                <input type="date" name="start-date" class="form__input" id="id-start-date">
+                <label for="id-start-date" class="form__label">Fecha Inicial</label>
+            </fieldset>
+            <fieldset class="form__div" style="max-width: 150px;">
+                <legend>Fecha Final</legend>
+                <input type="date" name="end-date" class="form__input" id="id-end-date">
+                <label for="id-end-date" class="form__label">Fecha Final</label>
+            </fieldset>
+            <button type="submit" class="search-button" style="margin-top: -15px;">Buscar</button>
+        </div>
+    </div>
+        <table>
+            <thead>
+                <tr style="font-size: 14px;">
+                    <th>Visitante</th>
+                    <th>Documento</th>
+                    <th>Entidad</th>
+                    <th>Motivo</th>
+                    <th>Funcionario</th>
+                    <th>Documento</th>
+                    <th>Area</th>
+                    <th>Sucursal</th>
+                    <th>Fecha</th>
+                    <th>Hora Ing.</th>
+                    <th>Hora Sal.</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o in object_list %}
+                <tr style="font-size: 11px;">
+                    <td data-label="Visitante">{{o.visitante}}</td>
+                    <td data-label="Documento">{{o.visitante_doc}}</td>
+                    <td data-label="Entidad">{{o.entidad}}</td>
+                    <td data-label="Motivo">{{o.motivo}}</td>
+                    <td data-label="Funcionario">{{o.funcionario}}</td>
+                    <td data-label="Documento">{{o.funcionario_doc}}</td>
+                    <td data-label="Area">{{o.area}}</td>
+                    <td data-label="Sucursal">{{o.sucursal}}</td>
+                    <td data-label="Fecha">{{o.fecha}}</td>
+                    <td data-label="Hora Ing.">{{o.hora_ing}}</td>
+                    <td data-label="Hora Sal.">{{o.hora_salida}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
 </body>
 </html>

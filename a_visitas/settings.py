@@ -28,8 +28,12 @@ SECRET_KEY = 'django-insecure-hyips4h#n*4l9e3^r)ta$vyp(%t632)s5o*5=aa#j*y*)(0@t_
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 CORS_ALLOW_ALL_ORIGINS = True
+#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+#DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+#ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+#CORS_ALLOWED_ORIGINS = os.environ.get('DJANGO_CORS_ALLOWED_ORIGINS', 'http://localhost:8000').split(',')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,7 +65,7 @@ ROOT_URLCONF = 'a_visitas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,11 +130,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/ehasoft/django-apps/visitas/staticfiles'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_URL = 'static/'
+STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', BASE_DIR / 'staticfiles') #'/home/ehasoft/django-apps/visitas/staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 LOGIN_REDIRECT_URL = ('/')
