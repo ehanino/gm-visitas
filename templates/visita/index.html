@@ -28,6 +28,7 @@
             </div>
         </header>
         <div>
+        <form method="get">
         <div class="search-container" style="margin-top: 20px;">
             <fieldset class="form__div" style="max-width: 250px;">
                 <legend>Buscar</legend>
@@ -46,7 +47,15 @@
             </fieldset>
             <button type="submit" class="search-button" style="margin-top: -15px;">Buscar</button>
         </div>
+        </form>
     </div>
+    <ul>
+        {% for visita in visitas %}
+            <li>{{ visita.visitante }} - {{ visita.entidad }}</li>
+        {% empty %}
+            <li>No se encontraron resultados.</li>
+        {% endfor %}
+    </ul>
         <table>
             <thead>
                 <tr style="font-size: 14px;">
