@@ -31,3 +31,6 @@ class VisitaForm(forms.ModelForm):
         cleaned_data = super().clean()
         # Aquí puedes agregar validaciones personalizadas
         return cleaned_data
+
+class UploadExcelForm(forms.Form):
+    archivo = forms.FileField(label='Selecciona el archivo Excel')

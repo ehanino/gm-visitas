@@ -28,7 +28,7 @@
             </div>
         </header>
         <div>
-        <form method="get">
+        <form method="get" action="{% url 'visitas:buscar_visitas' %}">
         <div class="search-container" style="margin-top: 20px;">
             <fieldset class="form__div" style="max-width: 250px;">
                 <legend>Buscar</legend>
@@ -37,25 +37,18 @@
             </fieldset>
             <fieldset class="form__div" style="max-width: 150px;">
                 <legend>Fecha Inicial</legend>
-                <input type="date" name="start-date" class="form__input" id="id-start-date">
-                <label for="id-start-date" class="form__label">Fecha Inicial</label>
+                <input type="date" name="fecha_inicial" class="form__input" id="id-fecha_inicial">
+                <label for="id-fecha_inicial" class="form__label">Fecha Inicial</label>
             </fieldset>
             <fieldset class="form__div" style="max-width: 150px;">
                 <legend>Fecha Final</legend>
-                <input type="date" name="end-date" class="form__input" id="id-end-date">
-                <label for="id-end-date" class="form__label">Fecha Final</label>
+                <input type="date" name="fecha_final" class="form__input" id="id-fecha_final">
+                <label for="id-fecha_final" class="form__label">Fecha Final</label>
             </fieldset>
             <button type="submit" class="search-button" style="margin-top: -15px;">Buscar</button>
         </div>
         </form>
     </div>
-    <ul>
-        {% for visita in visitas %}
-            <li>{{ visita.visitante }} - {{ visita.entidad }}</li>
-        {% empty %}
-            <li>No se encontraron resultados.</li>
-        {% endfor %}
-    </ul>
         <table>
             <thead>
                 <tr style="font-size: 14px;">
