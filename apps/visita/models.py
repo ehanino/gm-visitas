@@ -40,5 +40,5 @@ class Visita(models.Model):
         return f"{self.visitante} {self.hora_ing}"
     
     class Meta:
-        ordering = ['visitante','-hora_ing']
+        ordering = ['visitante', 'fecha','hora_ing']
     

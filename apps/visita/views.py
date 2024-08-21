@@ -31,10 +31,12 @@ class BuscarVisitasView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         print(f"request : {self.request}")
-        texto = self.request.GET.get('texto', '')
-        fecha_inicial = self.request.GET.get('fecha_inicial', '')
-        fecha_final = self.request.GET.get('fecha_final', '')
+        texto = self.request.GET.get('text-search', '').upper()
 
+        fecha_inicial = self.request.GET.get('fecha_inicial', '')
+        # fecha_inicial = f"{fecha_inicial[-2:]}/{fecha_inicial[5:7]}/{fecha_inicial[:4]}"
+        fecha_final = self.request.GET.get('fecha_final', '')
+        # fecha_final = f"{fecha_final[-2:]}/{fecha_final[5:7]}/{fecha_final[:4]}"
         if texto:
             queryset = queryset.filter(
                 Q(visitante__icontains=texto) |
@@ -47,9 +49,6 @@ class BuscarVisitasView(ListView):
             )
 
         if fecha_inicial and fecha_final:
-            fecha_inicial = datetime.strptime(fecha_inicial, '%d/%m/%Y').date()
-            fecha_final = datetime.strptime(fecha_final, '%d/%m/%Y').date()
-            print(f"Fechas: {fecha_inicial} {fecha_final}")
             queryset = queryset.filter(fecha__range=[fecha_inicial, fecha_final])
 
         return queryset
