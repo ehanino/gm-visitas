@@ -37,7 +37,8 @@ class BuscarVisitasView(ListView):
         queryset = super().get_queryset()  # Asumiendo que heredas de una clase que tiene get_queryset
 
         # Obtener parámetros de búsqueda
-        texto = self.request.GET.get('texto', '').strip()
+        texto = self.request.GET.get('text-search', '').strip()
+        print(f"Texto a buscar {texto}")
         fecha_inicial = self.request.GET.get('fecha_inicial', '').strip()
         fecha_final = self.request.GET.get('fecha_final', '').strip()
 

@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=1024">
-    <title>Tabla de Visitas Responsive</title>
+    <title>Listado de visitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/eha/eha_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/eha/style.css' %}">
 </head>
@@ -31,11 +32,14 @@
         <div>
         <form method="get" action="{% url 'visitas:buscar_visitas' %}">
         <div class="search-container" style="margin-top: 20px;">
-            <fieldset class="form__div" style="max-width: 250px;">
-                <legend>Buscar</legend>
-                <input type="text" name="text-search" class="form__input" placeholder=" " id="id-text-search">
-                <label for="id-text-search" class="form__label">Texto a buscar</label>
-            </fieldset>
+            <div class="reset-icon-container">
+                <a href="{% url 'visitas:dashboard' %}" class="reset-icon" title="Reset search"><img class="reset-x" src="{% static 'img/reiniciar.png' %}"></a>
+                <fieldset class="form__div" style="max-width: 250px;">
+                    <legend>Buscar</legend>
+                    <input type="text" name="text-search" class="form__input" placeholder=" " id="id-text-search">
+                    <label for="id-text-search" class="form__label">Texto a buscar</label>
+                </fieldset>
+            </div>
             <fieldset class="form__div" style="max-width: 150px;">
                 <legend>Fecha Inicial</legend>
                 <input type="date" name="fecha_inicial" class="form__input" id="id-fecha_inicial">
