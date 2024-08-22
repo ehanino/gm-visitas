@@ -49,7 +49,7 @@
         </div>
         </form>
     </div>
-        <table>
+        <table class="table-responsive">
             <thead>
                 <tr style="font-size: 14px;">
                     <th>Visitante</th>
@@ -66,23 +66,46 @@
                 </tr>
             </thead>
             <tbody>
-                {% for o in object_list %}
+                {% for o in visitas %}
                 <tr style="font-size: 11px;">
-                    <td data-label="Visitante">{{o.visitante}}</td>
+                    <td data-label="Visitante"  title="{{ o.visitante|escapejs }}">{{o.visitante}}</td>
                     <td data-label="Documento">{{o.visitante_doc}}</td>
                     <td data-label="Entidad">{{o.entidad}}</td>
-                    <td data-label="Motivo">{{o.motivo}}</td>
-                    <td data-label="Funcionario">{{o.funcionario}}</td>
+                    <td data-label="Motivo" title="{{ o.motivo|escapejs }}">{{o.motivo}}</td>
+                    <td data-label="Funcionario" title="{{ o.funcionario|escapejs }}">{{o.funcionario}}</td>
                     <td data-label="Documento">{{o.funcionario_doc}}</td>
-                    <td data-label="Area">{{o.area}}</td>
+                    <td data-label="Area"  title="{{ o.area|escapejs }}">{{o.area}}</td>
                     <td data-label="Sucursal">{{o.sucursal}}</td>
                     <td data-label="Fecha">{{o.fecha}}</td>
                     <td data-label="Hora Ing.">{{o.hora_ing}}</td>
                     <td data-label="Hora Sal.">{{o.hora_salida}}</td>
                 </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="11">No se encontraron visitas.</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% if is_paginated %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1{% if request.GET.texto %}&texto={{ request.GET.texto }}{% endif %}{% if request.GET.fecha_inicial %}&fecha_inicial={{ request.GET.fecha_inicial }}{% endif %}{% if request.GET.fecha_final %}&fecha_final={{ request.GET.fecha_final }}{% endif %}">&laquo; primera</a>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.texto %}&texto={{ request.GET.texto }}{% endif %}{% if request.GET.fecha_inicial %}&fecha_inicial={{ request.GET.fecha_inicial }}{% endif %}{% if request.GET.fecha_final %}&fecha_final={{ request.GET.fecha_final }}{% endif %}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.texto %}&texto={{ request.GET.texto }}{% endif %}{% if request.GET.fecha_inicial %}&fecha_inicial={{ request.GET.fecha_inicial }}{% endif %}{% if request.GET.fecha_final %}&fecha_final={{ request.GET.fecha_final }}{% endif %}">siguiente</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.texto %}&texto={{ request.GET.texto }}{% endif %}{% if request.GET.fecha_inicial %}&fecha_inicial={{ request.GET.fecha_inicial }}{% endif %}{% if request.GET.fecha_final %}&fecha_final={{ request.GET.fecha_final }}{% endif %}">última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}
     </div>
     
 </body>

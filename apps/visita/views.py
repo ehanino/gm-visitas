@@ -8,14 +8,19 @@ from .forms import UploadExcelForm
 import pandas as pd
 from django.urls import reverse_lazy
 from django.db import transaction
+from django.utils.dateparse import parse_date
 
 
 from .models import Visita
 from .forms import VisitaForm
 
+REGISTROS_POR_PAGINA = 25
+
 class DashboardView(ListView):
     model = Visita
     template_name = 'visita/index.html'
+    context_object_name = 'visitas'
+    paginate_by = REGISTROS_POR_PAGINA
 
 class RegistroCreateView(CreateView):
     model = Visita
@@ -26,17 +31,17 @@ class BuscarVisitasView(ListView):
     model = Visita
     template_name = 'visita/index.html'
     context_object_name = 'visitas'
-    paginate_by = 20  # Opcional: para paginar los resultados
+    paginate_by = REGISTROS_POR_PAGINA
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        print(f"request : {self.request}")
-        texto = self.request.GET.get('text-search', '').upper()
+        queryset = super().get_queryset()  # Asumiendo que heredas de una clase que tiene get_queryset
 
-        fecha_inicial = self.request.GET.get('fecha_inicial', '')
-        # fecha_inicial = f"{fecha_inicial[-2:]}/{fecha_inicial[5:7]}/{fecha_inicial[:4]}"
-        fecha_final = self.request.GET.get('fecha_final', '')
-        # fecha_final = f"{fecha_final[-2:]}/{fecha_final[5:7]}/{fecha_final[:4]}"
+        # Obtener parámetros de búsqueda
+        texto = self.request.GET.get('texto', '').strip()
+        fecha_inicial = self.request.GET.get('fecha_inicial', '').strip()
+        fecha_final = self.request.GET.get('fecha_final', '').strip()
+
+        # Aplicar filtro de texto si se proporciona
         if texto:
             queryset = queryset.filter(
                 Q(visitante__icontains=texto) |
@@ -48,8 +53,19 @@ class BuscarVisitasView(ListView):
                 Q(sucursal__icontains=texto)
             )
 
-        if fecha_inicial and fecha_final:
-            queryset = queryset.filter(fecha__range=[fecha_inicial, fecha_final])
+        # Aplicar filtro de fecha
+        date_filter = Q()
+        if fecha_inicial:
+            fecha_inicial_parsed = parse_date(fecha_inicial)
+            if fecha_inicial_parsed:
+                date_filter &= Q(fecha__gte=fecha_inicial_parsed)
+        if fecha_final:
+            fecha_final_parsed = parse_date(fecha_final)
+            if fecha_final_parsed:
+                date_filter &= Q(fecha__lte=fecha_final_parsed)
+        
+        if date_filter:
+            queryset = queryset.filter(date_filter)
 
         return queryset
 

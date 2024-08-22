@@ -23,11 +23,14 @@ class Visita(models.Model):
     funcionario_doc = models.CharField('Nro. documento', max_length=30)
     area = models.CharField('Área', max_length=300)
     sucursal = models.CharField('Sucursal', max_length=200)
-    fecha = models.CharField('Fecha', max_length=12)
+    fecha = models.DateField('Fecha')
     hora_ing = models.CharField('Hora ing.', max_length=10)
     hora_salida = models.CharField('Hora sal.', max_length=10)
     
     def save(self, *args, **kwargs):
+        fecha = f"{self.fecha[6:]}-{self.fecha[3:5]}-{self.fecha[:2]}"
+        print(f"Fecha {fecha}")
+        self.fecha = fecha
         self.visitante = self.visitante.strip().upper()
         self.entidad = self.entidad.strip().upper()
         self.motivo = self.motivo.strip().upper()
@@ -40,5 +43,5 @@ class Visita(models.Model):
         return f"{self.visitante} {self.hora_ing}"
     
     class Meta:
-        ordering = ['visitante', 'fecha','hora_ing']
+        ordering = ['fecha','hora_ing']
     

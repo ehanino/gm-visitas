@@ -97,6 +97,72 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.pagination .step-links {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.pagination a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 2px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination .current {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.table-responsive td {
+    max-width: 150px; /* Ajusta este valor según tus necesidades */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* .table-responsive td:hover {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible;
+} */
+
+@media (max-width: 600px) {
+    .pagination {
+        flex-direction: column;
+    }
+    
+    .pagination .step-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .pagination a, .pagination .current {
+        margin: 2px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     table, thead, tbody, th, td, tr {
         display: block;
