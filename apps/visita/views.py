@@ -118,3 +118,11 @@ class CargarVisitasView(FormView):
             print(f"Error general: {str(e)}")
         
         return super().form_valid(form)
+
+def error_400(request, exception):
+    print("hfhfhfh")
+    return render(request, '400.html', status=400)
+
+def error_500(request):
+    print("hfhfhfh 50000")
+    return render(request, '500.html', status=500)
