@@ -14,13 +14,13 @@ body {
     display: flex;
     justify-content: center;
     margin: auto auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 /* HEADER */
 header {
     width: 100% !important;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     position: relative;
     padding: 0 2rem;
     margin-top: 0.2rem;
