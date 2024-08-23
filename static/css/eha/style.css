@@ -163,7 +163,7 @@ tr:nth-child(even) {
 
 .pagination .current {
     padding: 8px 12px;
-    background-color: #007bff;
+    background-color: #0056B3;
     color: white;
     border-radius: 20px;
     margin: 0 5px;

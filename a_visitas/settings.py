@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hyips4h#n*4l9e3^r)ta$vyp(%t632)s5o*5=aa#j*y*)(0@t_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['apps.muniventanilla.gob.pe','www.apps.muniventanilla.gob.pe']
+ALLOWED_HOSTS = ['apps.muniventanilla.gob.pe','www.apps.muniventanilla.gob.pe','127.0.0.1']
 
 CORS_ALLOW_ALL_ORIGINS = True
 #SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')

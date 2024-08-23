@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import handler400, handler500
 
-handler400 = 'apps.visita.views.error_400'
-handler500 = 'apps.visita.views.error_500'
+# handler400 = 'apps.visita.views.error_400'
+# handler500 = 'apps.visita.views.error_500'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
